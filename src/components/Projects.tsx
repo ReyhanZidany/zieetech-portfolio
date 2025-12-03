@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { projects } from '../data/portfolio'
-import { FaGithub, FaExternalLinkAlt, FaTimes, FaArrowRight, FaCode } from 'react-icons/fa'
+import { FaGithub, FaExternalLinkAlt, FaTimes, FaArrowRight } from 'react-icons/fa'
 
 const Projects = () => {
   const [ref, inView] = useInView({
