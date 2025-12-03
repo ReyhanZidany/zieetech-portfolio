@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useForm } from 'react-hook-form'
 import { personalInfo, socialLinks } from '../data/portfolio'
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaCheckCircle } from 'react-icons/fa'
 import type { ContactForm } from '../types'
 
 const Contact = () => {
@@ -13,6 +13,7 @@ const Contact = () => {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
   const [submitMessage, setSubmitMessage] = useState('')
 
   const {
@@ -24,15 +25,46 @@ const Contact = () => {
 
   const onSubmit = async (data: ContactForm) => {
     setIsSubmitting(true)
+    setSubmitStatus(null)
     setSubmitMessage('')
 
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Form data:', data)
-      setSubmitMessage('Thank you for your message!  I will get back to you soon.')
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'a7b31cc3-4959-4ce3-887c-1ed989300e3e',
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+          from_name: 'Portfolio Contact Form',
+        })
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitStatus('success')
+        setSubmitMessage('Thank you for reaching out! I will get back to you soon.')
+        reset()
+        
+        setTimeout(() => {
+          setSubmitStatus(null)
+          setSubmitMessage('')
+        }, 5000)
+      } else {
+        throw new Error('Submission failed')
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+      setSubmitMessage('Oops! Something went wrong. Please try again or contact me directly via email.')
+    } finally {
       setIsSubmitting(false)
-      reset()
-    }, 2000)
+    }
   }
 
   const iconComponents: { [key: string]: any } = {
@@ -53,48 +85,55 @@ const Contact = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display gradient-text">Get In Touch</h2>
           <div className="w-20 h-1 bg-gray-800 dark:bg-gray-200 mx-auto mb-4" />
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out!
+            Have a project in mind or want to collaborate? Feel free to reach out! 
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
+          {/* Left Side - Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="space-y-8"
           >
+            {/* Contact Info */}
             <div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Contact Information</h3>
               
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
                     <FaEnvelope className="text-xl text-gray-800 dark:text-gray-200" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Email</p>
-                    <a href={`mailto:${personalInfo.email}`} className="text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300">
+                    <a 
+                      href={`mailto:${personalInfo.email}`} 
+                      className="text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                    >
                       {personalInfo.email}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
                     <FaPhone className="text-xl text-gray-800 dark:text-gray-200" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Phone</p>
-                    <a href={`tel:${personalInfo.phone}`} className="text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300">
+                    <a 
+                      href={`tel:${personalInfo.phone}`} 
+                      className="text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                    >
                       {personalInfo.phone}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
                     <FaMapMarkerAlt className="text-xl text-gray-800 dark:text-gray-200" />
                   </div>
                   <div>
@@ -105,6 +144,7 @@ const Contact = () => {
               </div>
             </div>
 
+            {/* Social Links */}
             <div>
               <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Connect With Me</h4>
               <div className="flex gap-4">
@@ -117,7 +157,7 @@ const Contact = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-800 dark:text-gray-200 hover:bg-gray-900 dark:hover:bg-gray-100 hover:text-white dark:hover:text-gray-900 transition-all duration-300"
-                      whileHover={{ scale: 1.1 }}
+                      whileHover={{ scale: 1.1, y: -5 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <Icon className="text-xl" />
@@ -128,7 +168,7 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Right Side - Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -143,7 +183,7 @@ const Contact = () => {
                   {...register('name', { required: 'Name is required' })}
                   type="text"
                   id="name"
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-gray-900 dark:text-gray-100"
+                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-gray-900 dark:text-gray-100 transition-all"
                   placeholder="Your name"
                 />
                 {errors.name && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name.message}</p>}
@@ -163,7 +203,7 @@ const Contact = () => {
                   })}
                   type="email"
                   id="email"
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-gray-900 dark:text-gray-100"
+                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-gray-900 dark:text-gray-100 transition-all"
                   placeholder="your.email@example.com"
                 />
                 {errors.email && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email.message}</p>}
@@ -177,7 +217,7 @@ const Contact = () => {
                   {...register('subject', { required: 'Subject is required' })}
                   type="text"
                   id="subject"
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-gray-900 dark:text-gray-100"
+                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-gray-900 dark:text-gray-100 transition-all"
                   placeholder="Project inquiry"
                 />
                 {errors.subject && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.subject.message}</p>}
@@ -188,10 +228,13 @@ const Contact = () => {
                   Message *
                 </label>
                 <textarea
-                  {...register('message', { required: 'Message is required', minLength: { value: 10, message: 'Message must be at least 10 characters' } })}
+                  {...register('message', { 
+                    required: 'Message is required', 
+                    minLength: { value: 10, message: 'Message must be at least 10 characters' } 
+                  })}
                   id="message"
                   rows={5}
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-gray-900 dark:text-gray-100 resize-none"
+                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-gray-900 dark:text-gray-100 resize-none transition-all"
                   placeholder="Tell me about your project..."
                 />
                 {errors.message && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message.message}</p>}
@@ -200,26 +243,29 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full btn-primary justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full btn-primary justify-center disabled:opacity-50 disabled:cursor-not-allowed group"
               >
                 {isSubmitting ? (
                   <span>Sending...</span>
                 ) : (
                   <>
-                    <FaPaperPlane />
+                    <FaPaperPlane className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
                     <span>Send Message</span>
                   </>
                 )}
               </button>
 
               {submitMessage && (
-                <motion.p
+                <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-center text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 p-4 rounded-lg"
+                  className="p-4 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700"
                 >
-                  {submitMessage}
-                </motion.p>
+                  <div className="flex items-center gap-2 text-gray-900 dark:text-gray-100">
+                    {submitStatus === 'success' && <FaCheckCircle className="flex-shrink-0" />}
+                    <p className="text-sm">{submitMessage}</p>
+                  </div>
+                </motion.div>
               )}
             </form>
           </motion.div>

@@ -28,9 +28,9 @@ const About = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-              {personalInfo.bio}
-            </p>
+          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-left md:text-justify">
+            {personalInfo.bio}
+          </p>
             
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">

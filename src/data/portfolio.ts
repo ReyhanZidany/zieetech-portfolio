@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: 'Reyhan Zidany Jovianto',
   title: 'Crafting Seamless Experiences Across the Stack',
-  subtitle: 'Fullstack Developer | Blockchain Developer | IT Infrastructure',
+  subtitle: 'Fullstack Developer | Software Engineer | Blockchain Developer',
   email: 'reyzidan23@gmail.com',
   phone: '+6281298541085',
   location: 'Jakarta, Indonesia',
@@ -10,7 +10,6 @@ export const personalInfo = {
 }
 
 export const navLinks = [
-  { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
@@ -81,6 +80,7 @@ export const projects = [
   {
     id: 1,
     title: 'ChainCarbon – Blockchain Carbon Marketplace',
+    thumbnail: '/cb-ls.jpeg',
     description: 'Blockchain-based carbon certificate trading platform using Hyperledger Fabric with multi-organization network.',
     tags: ['Hyperledger Fabric', 'Node.js', 'React', 'MySQL', 'CouchDB'],
     githubUrl: 'https://github.com/ReyhanZidany',
@@ -94,7 +94,24 @@ export const projects = [
   },
   {
     id: 2,
+    title: 'DipoHelp – Service Management Platform',
+    thumbnail: 'dh-ls.jpeg',
+    description: 'Integrated service platform for Diponegoro University providing streamlined access to IT support, facilities, academic services, and student activities.',
+    tags: ['Laravel', 'Tailwind CSS', 'PHP', 'MySQL', 'Amazon S3'],
+    githubUrl: 'https://github.com/ReyhanZidany/DipoHelp',
+    demoUrl: '',
+    highlights: [
+      'Built multi-category service system (Academic, Finance, IT, Facilities, Student Affairs)',
+      'Developed comprehensive ticketing system with automated routing',
+      'Created help center with FAQ, tutorials, and user guides',
+      'Integrated social media feeds from official university accounts',
+      'Designed responsive UI with Tailwind CSS for optimal user experience',
+    ],
+  },
+  {
+    id: 3,
     title: 'Helpdesk Management System',
+    thumbnail: '/landscape-ticket.png',
     description: 'Full-featured helpdesk ticketing system for PT. IPC Terminal Petikemas with PIC assignment and history logging.',
     tags: ['Laravel', 'Tailwind CSS', 'JavaScript', 'MySQL'],
     githubUrl: 'https://github.com/ReyhanZidany/ServiceNow',
@@ -107,11 +124,12 @@ export const projects = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: 'Android Mobile App – Bangkit',
+    thumbnail: '/dopamind-landscape.jpg',
     description: 'Mobile application developed during Bangkit Academy using Kotlin with MVVM architecture and cloud integration.',
     tags: ['Kotlin', 'Firebase', 'Retrofit', 'MVVM'],
-    githubUrl: 'https://github.com/ReyhanZidany',
+    githubUrl: 'https://github.com/DopamindPlus',
     demoUrl: '',
     highlights: [
       'Implemented MVVM architecture and local caching',
@@ -126,25 +144,29 @@ export const skills = [
   // Programming Languages
   { name: 'PHP', icon: 'SiPhp', category: 'languages' },
   { name: 'JavaScript', icon: 'IoLogoJavascript', category: 'languages' },
+  { name: 'TypeScript', icon: 'SiTypescript', category: 'languages' },
   { name: 'Python', icon: 'FaPython', category: 'languages' },
   { name: 'Java', icon: 'FaJava', category: 'languages' },
   { name: 'Kotlin', icon: 'SiKotlin', category: 'languages' },
+
+    // Frontend
+  { name: 'React.js', icon: 'FaReact', category: 'frontend' },
+  { name: 'Tailwind CSS', icon: 'SiTailwindcss', category: 'frontend' },
   
   // Backend
   { name: 'Laravel', icon: 'FaLaravel', category: 'backend' },
   { name: 'Node.js', icon: 'FaNode', category: 'backend' },
   { name: 'Express', icon: 'SiExpress', category: 'backend' },
-  
-  // Mobile
-  { name: 'Android', icon: 'FaAndroid', category: 'mobile' },
-  
+  { name: 'Spring Boot', icon: 'SiSpringboot', category: 'backend' },
+
   // Blockchain
-  { name: 'Hyperledger', icon: 'SiHyperledger', category: 'blockchain' },
+  { name: 'Hyperledger Fabric', icon: 'SiHyperledger', category: 'blockchain' },
   
   // Database
   { name: 'MySQL', icon: 'SiMysql', category: 'database' },
   { name: 'Oracle', icon: 'SiOracle', category: 'database' },
   { name: 'Firebase', icon: 'SiFirebase', category: 'database' },
+  { name: 'CouchDB', icon: 'SiApachecouchdb', category: 'database' },
   
   // DevOps & Tools
   { name: 'Git', icon: 'FaGitAlt', category: 'tools' },
@@ -161,6 +183,7 @@ export const organizations = [
     title: 'Staff of Interests, Talents, & Hobbies Department',
     organization: 'Himpunan Mahasiswa Teknik Komputer, Universitas Diponegoro',
     period: 'August 2023 - April 2025',
+    logo: 'himaskom-nobg.png',
     achievements: [
       'Led Rembug UKM inauguration event for student activity unit leaders',
       'Coordinated field operations for THE ACE 2024 anniversary event',
@@ -172,6 +195,7 @@ export const organizations = [
     title: 'Core Staff - Software Division',
     organization: 'Computer Engineering Research Club',
     period: 'May 2023 - October 2025',
+    logo: '/cerc-logo.png',
     achievements: [
       'Learned JavaScript, Node.js, and API development',
       'Taught backend development to peers',
@@ -183,6 +207,7 @@ export const organizations = [
     title: 'Staff',
     organization: 'Google Developer Student Clubs',
     period: 'July 2023 - June 2024',
+    logo: '/gdsc.png',
     achievements: [
       'Participated in workshops on Front-End and Back-End Development',
       'Explored React, Laravel, and Node.js frameworks',
@@ -192,13 +217,49 @@ export const organizations = [
 ]
 
 export const certifications = [
-  { name: 'Cisco – IT Essentials', issuer: 'Cisco' },
-  { name: 'CCNA Intro to Networks', issuer: 'Cisco' },
-  { name: 'CCNAv7: Switching, Routing, and Wireless Essentials', issuer: 'Cisco' },
-  { name: 'Database Design', issuer: 'Oracle' },
-  { name: 'Database Foundation', issuer: 'Oracle' },
-  { name: 'Kotlin Programming', issuer: 'Dicoding' },
-  { name: 'Android Basic & Fundamentals', issuer: 'Dicoding' },
-  { name: 'Machine Learning for Android', issuer: 'Dicoding' },
-  { name: 'Python for Software Development', issuer: 'Others' },
+  { name: 'Cisco – IT Essentials',
+    issuer: 'Cisco', 
+    credentialUrl: 'https://www.credly.com/badges/f32a708c-abd3-45c6-a11b-102443902117',
+    logo: '/cisco.png' 
+  },
+  { name: 'CCNA Intro to Networks', 
+    issuer: 'Cisco', 
+    credentialUrl: 'https://www.credly.com/badges/06bdd403-0fa7-497b-b50a-cd2e9ba962ba',
+    logo: '/cisco.png'  
+  },
+  { name: 'CCNAv7: Switching, Routing, and Wireless Essentials', 
+    issuer: 'Cisco', 
+    credentialUrl: 'https://www.credly.com/badges/9ed766d2-752c-4ec1-938e-5fdc75b4cbbd',
+    logo: '/cisco.png'  
+  },
+  { name: 'Database Design', 
+    issuer: 'Oracle', 
+    certificatePDF: '/certificates/Oracle_Certificate.pdf',
+    logo: '/oracle.png'  
+  },
+  { name: 'Database Foundation', 
+    issuer: 'Oracle', 
+    certificatePDF: '/certificates/Oracle_Certificate.pdf',
+    logo: '/oracle.png'  
+  },
+  { name: 'Kotlin Programming', 
+    issuer: 'Dicoding', 
+    credentialUrl: 'https://www.dicoding.com/certificates/NVP74G79VPR0',
+    logo: '/dicoding.png'  
+  },
+  { name: 'Android Basic & Fundamentals', 
+    issuer: 'Dicoding', 
+    credentialUrl: 'https://www.dicoding.com/certificates/81P244DYJZOY',
+    logo: '/dicoding.png'  
+  },
+  { name: 'Machine Learning for Android', 
+    issuer: 'Dicoding', 
+    credentialUrl: 'https://www.dicoding.com/certificates/4EXG7J2DEPRL',
+    logo: '/dicoding.png'  
+  },
+  { name: 'Python for Software Development', 
+    issuer: 'Progate', 
+    certificatePDF: '/certificates/python_certificate.pdf',
+    logo: '/progate.jpg' 
+  },
 ]

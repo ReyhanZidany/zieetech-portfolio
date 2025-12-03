@@ -1,50 +1,53 @@
 import { useState, useEffect } from 'react'
+import { ThemeProvider } from './contexts/ThemeContext'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Experience from './components/Experience'
-import Services from './components/Services'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import SplashScreen from './components/SplashScreen'
 
 function App() {
-  const [scrolled, setScrolled] = useState(false)
+  const [showSplash, setShowSplash] = useState(true)
+  const [hasShownSplash, setHasShownSplash] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+    // Check if splash has been shown in this session
+    const splashShown = sessionStorage.getItem('splashShown')
+    if (splashShown) {
+      setShowSplash(false)
+      setHasShownSplash(true)
     }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const handleSplashComplete = () => {
+    setShowSplash(false)
+    setHasShownSplash(true)
+    sessionStorage.setItem('splashShown', 'true')
+  }
+
   return (
-    <div className="relative bg-white dark:bg-gray-950 text-gray-900 dark:text-white overflow-x-hidden transition-colors duration-300">
-      <Navbar scrolled={scrolled} />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Services />
-      <Contact />
-      <Footer />
-      
-      {scrolled && (
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 bg-gray-900 dark:bg-gray-100 hover:bg-gray-800 dark:hover:bg-gray-200 text-white dark:text-gray-900 p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50"
-          aria-label="Scroll to top"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-          </svg>
-        </button>
+    <ThemeProvider>
+      {showSplash && ! hasShownSplash && (
+        <SplashScreen onComplete={handleSplashComplete} />
       )}
-    </div>
+      
+      <div className={showSplash ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   )
 }
 

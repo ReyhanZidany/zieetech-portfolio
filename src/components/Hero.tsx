@@ -10,67 +10,43 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden section-padding pt-24">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-100 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950" />
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gray-300/30 dark:bg-gray-700/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gray-400/20 dark:bg-gray-600/20 rounded-full blur-3xl" />
+    <section id="home" className="min-h-screen relative overflow-hidden">
+      <div className="absolute inset-0">
+        <img 
+          src="/idx-pict.jpg" 
+          alt={personalInfo.name}
+          className="w-full h-full object-cover object-center md:object-center object-[45%_center]"
+        />
+        <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />
       </div>
 
-      <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Text Content */}
+      <div className="relative z-10 min-h-screen flex flex-col py-24 px-6 md:px-12 lg:px-16">        
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="mb-auto"
+        >
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
+            {personalInfo.name}
+          </h1>
+          <p className="text-sm md:text-base text-white/80 max-w-xl">
+            {personalInfo.subtitle}
+          </p>
+        </motion.div>
+
+        {/* Bottom Section */}
+        <div className="flex flex-col md:flex-row justify-between items-end gap-8 mt-auto">
+          
+          {/* Bottom Left - Social Links */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="order-2 lg:order-1"
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="flex flex-col gap-4"
           >
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 font-display"
-            >
-              <span className="gradient-text">{personalInfo.name}</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-xl md:text-2xl lg:text-3xl text-gray-700 dark:text-gray-300 mb-4"
-            >
-              {personalInfo.title}
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              className="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
-            >
-              {personalInfo.subtitle}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              className="mb-8"
-            >
-              <a href="#contact" className="btn-primary">
-                Get in Touch
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
-              className="flex gap-4"
-            >
+            <p className="text-white/60 text-sm mb-2">Connect with me</p>
+            <div className="flex gap-4">
               {socialLinks.map((social, index) => {
                 const Icon = iconComponents[social.icon]
                 return (
@@ -79,42 +55,44 @@ const Hero = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-800 dark:text-gray-200 hover:bg-gray-900 dark:hover:bg-gray-100 hover:text-white dark:hover:text-gray-900 transition-all duration-300"
-                    whileHover={{ scale: 1.1 }}
+                    className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white hover:text-gray-900 transition-all duration-300 border border-white/30"
+                    whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.7 + index * 0.1 }}
+                    transition={{ delay: 0.5 + index * 0.1 }}
                   >
                     <Icon className="text-xl" />
                   </motion.a>
                 )
               })}
-            </motion.div>
+            </div>
           </motion.div>
 
-          {/* Right Side - Large Photo */}
+          {/* Bottom Right - Title & CTA */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end"
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="text-right"
           >
-            <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
-              className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
+            <h2 className="text-2xl md:text-3xl lg:text-2xl font-bold text-white mb-4 max-w-md">
+              {personalInfo.title}
+            </h2>    
+            <a 
+              href="#contact" 
+              className="group inline-flex items-center gap-2 text-white font-semibold text-lg hover:text-white/90 transition-all duration-300"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-300 to-gray-500 dark:from-gray-700 dark:to-gray-900 rounded-3xl rotate-6 blur-sm opacity-50" />
-              <div className="relative w-full h-full bg-gradient-to-br from-gray-300 to-gray-500 dark:from-gray-700 dark:to-gray-900 rounded-3xl p-2">
-                <img 
-                  src="/profile.jpg" 
-                  alt={personalInfo.name}
-                  className="w-full h-full rounded-2xl object-cover"
-                />
-              </div>
-            </motion.div>
+              <span className="relative">
+                Get in Touch
+                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
+              </span>
+              
+              {/* Diagonal Arrow */}
+              <svg className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </a>
           </motion.div>
         </div>
       </div>

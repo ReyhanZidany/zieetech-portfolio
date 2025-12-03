@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container-custom">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-600 dark:text-gray-400 text-sm text-center md:text-left">
-            © {currentYear} {personalInfo.name}.All rights reserved.
+            © {currentYear} {personalInfo.name}. All rights reserved.
           </p>
           
           <p className="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
