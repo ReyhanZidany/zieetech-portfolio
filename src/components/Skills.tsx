@@ -19,7 +19,7 @@ const Skills = () => {
   const topRowWidth = topRowSkills.length * 180
   const bottomRowWidth = bottomRowSkills.length * 180
 
-  useAnimationFrame((t, delta) => {
+  useAnimationFrame((_t, delta) => {
     if (!isHoveredTop) {
       let newX = xTop.get() - (delta * 0.05)
       if (newX <= -topRowWidth) {

@@ -25,9 +25,9 @@ const Hero = () => {
   const topRowWidth = topRowSkills.length * 150
   const bottomRowWidth = bottomRowSkills.length * 150
 
-  useAnimationFrame((t, delta) => {
-    if (!isHoveredTop) {
-      let newX = xTop.get() - (delta * 0.05)
+  useAnimationFrame((_t, delta) => {
+    if (! isHoveredTop) {
+      let newX = xTop. get() - (delta * 0.05)
       if (newX <= -topRowWidth) {
         newX = 0
       }
