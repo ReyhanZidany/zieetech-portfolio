@@ -1,81 +1,97 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { personalInfo, education } from '../data/portfolio'
-import { FaGraduationCap, FaMapMarkerAlt, FaCalendar, FaTrophy } from 'react-icons/fa'
 
 const About = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
+  const [ref, inView] = useInView({ triggerOnce:  true, threshold: 0.1 })
 
   return (
-    <section id="about" className="section-padding bg-gray-100 dark:bg-gray-900 rounded-t-3xl rounded-b-3xl" ref={ref}>
-      <div className="container-custom">
+    <section id="about" className="py-4 px-6" ref={ref}>
+      <div className="max-w-content mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display gradient-text">About Me</h2>
-          <div className="w-20 h-1 bg-gray-800 dark:bg-gray-200 mx-auto" />
-        </motion.div>
+          <p className="text-sm font-mono text-gray-500 dark:text-gray-400 mb-8">About</p>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-left md:text-justify">
-            {personalInfo.bio}
-          </p>
+          <div className="space-y-6 text-gray-600 dark:text-gray-400 leading-relaxed">
+            <p>
+              I'm a fullstack developer and software engineer based in{' '}
+              <span className="text-gray-900 dark:text-white font-medium">Jakarta, Indonesia</span>.
+              Currently pursuing my degree in Computer Engineering while building production-ready 
+              applications and distributed systems.
+            </p>
             
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
-                <FaMapMarkerAlt className="text-xl text-gray-800 dark:text-gray-200" />
-                <span>{personalInfo.location}</span>
-              </div>
-            </div>
-          </motion.div>
+            <p>
+              My expertise spans across the entire stack from crafting responsive frontends with{' '}
+              <span className="text-gray-900 dark:text-white font-medium">React</span> to building 
+              robust backends using{' '}
+              <span className="text-gray-900 dark:text-white font-medium">Laravel</span> and{' '}
+              <span className="text-gray-900 dark:text-white font-medium">Node.js</span>.
+              I'm particularly passionate about blockchain technology and creating scalable, 
+              reliable solutions that solve real-world problems.
+            </p>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="card"
-          >
-            <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 rounded-lg bg-gray-800 dark:bg-gray-200 flex items-center justify-center">
-                <FaGraduationCap className="text-2xl text-white dark:text-gray-900" />
-              </div>
+            <p>
+              Beyond development, I have hands-on experience with IT infrastructure and 
+              enterprise system management. I believe in writing clean, maintainable code 
+              and continuously learning emerging technologies. You can explore my work on{' '}
+              <a 
+                href={`https://github.com/${personalInfo.github || 'ReyhanZidany'}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-900 dark:text-white hover:underline underline-offset-4"
+              >
+                GitHub
+              </a>
+              {' '}where I contribute to open-source projects and share my experiments.
+            </p>
+
+            <p>
+              When I'm not coding, you'll find me vibing to{' '}
+              <a 
+                href={personalInfo.spotify || 'https://open.spotify.com'}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-900 dark:text-white hover:underline underline-offset-4"
+              >
+                music
+              </a>
+              , dropping{' '}
+              <a 
+                href={personalInfo.instagram || 'https://instagram.com'}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-900 dark:text-white hover:underline underline-offset-4"
+              >
+                photo dumps
+              </a>
+              , or geeking out over distributed systems and blockchain architectures. 
+            </p>
+          </div>
+
+          <div className="mt-12 pt-12 border-t border-gray-200 dark:border-gray-800">
+            <div className="flex items-start gap-4">
+              <img 
+                src="/logo_undip.png" 
+                alt="UNDIP" 
+                className="w-12 h-12 rounded-lg object-contain"
+              />
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">Education</h3>
-                <p className="text-gray-600 dark:text-gray-400">{education.university}</p>
+                <p className="font-medium text-gray-900 dark:text-white">
+                  {education.degree}
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  {education.university}
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-500 mt-1 font-mono">
+                  {education.period} · GPA {education.gpa}
+                </p>
               </div>
             </div>
-
-            <div className="space-y-3 pl-16">
-              <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                <FaGraduationCap className="text-gray-600 dark:text-gray-400" />
-                <span>{education.degree}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                <FaMapMarkerAlt className="text-gray-600 dark:text-gray-400" />
-                <span>{education.location}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                <FaCalendar className="text-gray-600 dark:text-gray-400" />
-                <span>{education.period}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                <FaTrophy className="text-gray-600 dark:text-gray-400" />
-                <span className="font-semibold">GPA: {education.gpa}</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

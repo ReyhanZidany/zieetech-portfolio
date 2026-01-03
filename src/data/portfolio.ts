@@ -5,7 +5,11 @@ export const personalInfo = {
   email: 'reyzidan23@gmail.com',
   phone: '+6281298541085',
   location: 'Jakarta, Indonesia',
-  bio: "I turn ideas into scalable digital solutions. With hands-on experience across fullstack web development, mobile apps, and enterprise infrastructure, I thrive on solving complex problems and shipping products that matter. Whether it's building web applications, developing mobile solutions, or managing critical systems, I deliver real impact through code.",
+  github: 'ReyhanZidany',
+  linkedin: 'https://linkedin.com/in/reyhanzidanyjovianto',
+  spotify: 'https://open.spotify.com/user/21gqfh4lshux3ifxvfeirvpva?si=8b48f5a82c5d489f',
+  instagram: 'https://instagram.com/reyhannzj',
+  bio: "Computer Engineering student with hands-on experience in software development and IT infrastructure. Skilled in fullstack development (Laravel, Node.js, React) and distributed systems, with familiarity in enterprise system management, focusing on building reliable and scalable technology solutions.",
   resumeUrl: '/resume.pdf',
 }
 
@@ -28,7 +32,7 @@ export const education = {
   degree: 'Bachelor of Engineering - Computer Engineering',
   location: 'Semarang, Indonesia',
   period: '2022 - Present',
-  gpa: '3.75/4.00',
+  gpa: '3.77/4.00',
 }
 
 export const experiences = [
@@ -37,8 +41,9 @@ export const experiences = [
     title: 'IT Infrastructure Development Intern',
     company: 'Indonesia Stock Exchange (IDX)',
     period: 'January 2025 - February 2025',
-    location: 'Jakarta, Indonesia',
+    location:  'Jakarta, Indonesia',
     type: 'Internship',
+    logo: '/logo_idx.jpg',
     responsibilities: [
       'Gained hands-on experience in enterprise IT infrastructure with Sophos Firewall, Nutanix Core, and RHEL',
       'Developed expertise in server management and virtualization using VMware vCenter',
@@ -48,12 +53,13 @@ export const experiences = [
   },
   {
     id: 2,
-    title: 'Fullstack Developer Intern',
+    title:  'Fullstack Developer Intern',
     company: 'PT. IPC Terminal Petikemas',
     period: 'June 2024 - August 2024',
     location: 'Jakarta, Indonesia',
-    type: 'Internship',
-    responsibilities: [
+    type:  'Internship',
+    logo: '/pelindo_nobg.png',
+    responsibilities:  [
       'Developed responsive helpdesk web application using Laravel and JavaScript',
       'Designed and managed MySQL databases for efficient data storage',
       'Created comprehensive technical documentation for features and modules',
@@ -65,13 +71,14 @@ export const experiences = [
     title: 'Mobile Development Cohort',
     company: 'Bangkit Academy (Google, Tokopedia, Gojek, Traveloka)',
     period: 'September 2024 - December 2024',
-    location: 'Remote',
+    location:  'Remote',
     type: 'Training',
+    logo: '/bangkit_logo.jpg',
     responsibilities: [
       'Participated in intensive Android development program using Kotlin',
       'Focused on mobile UI/UX design and Google Cloud technologies',
       'Completed collaborative capstone project with team members',
-      'Developed soft skills: problem-solving, teamwork, and leadership',
+      'Developed soft skills:  problem-solving, teamwork, and leadership',
     ],
   },
 ]
@@ -82,8 +89,8 @@ export const projects = [
     title: 'ChainCarbon – Blockchain Carbon Marketplace',
     thumbnail: '/cb-ls.jpeg',
     description: 'Blockchain-based carbon certificate trading platform using Hyperledger Fabric with multi-organization network.',
-    tags: ['Hyperledger Fabric', 'Node.js', 'React', 'MySQL', 'CouchDB'],
-    githubUrl: 'https://github.com/ReyhanZidany',
+    tags: ['Hyperledger Fabric', 'Node.js', 'React.js', 'MySQL', 'CouchDB'],
+    githubUrl:  'https://github.com/ReyhanZidany/ChainCarbon',
     demoUrl: '',
     highlights: [
       'Developed smart contracts for certificate creation, trading, and retirement',
@@ -94,12 +101,27 @@ export const projects = [
   },
   {
     id: 2,
+    title:  'StockHub – Enterprise Resource Planning (ERP)',
+    thumbnail: '/stockhub-ls.jpeg',
+    description: 'Comprehensive ERP solution designed for efficient inventory management with decoupled architecture featuring React frontend and Rails API backend.',
+    tags: ['React.js', 'Ruby on Rails', 'JavaScript', 'Docker', 'REST API'],
+    githubUrl:  'https://github.com/ReyhanZidany/StockHub',
+    demoUrl: 'https://stockkhub.vercel.app',
+    highlights: [
+      'Built comprehensive supplier management system with vendor tracking',
+      'Developed real-time dashboard analytics with interactive data visualization',
+      'Containerized application using Docker',
+      'Designed RESTful API architecture for seamless frontend-backend communication',
+    ],
+  },
+  {
+    id: 3,
     title: 'DipoHelp – Service Management Platform',
-    thumbnail: 'dh-ls.jpeg',
+    thumbnail: '/dh-ls.jpeg',
     description: 'Integrated service platform for Diponegoro University providing streamlined access to IT support, facilities, academic services, and student activities.',
-    tags: ['Laravel', 'Tailwind CSS', 'PHP', 'MySQL', 'Amazon S3'],
+    tags: ['Laravel', 'Tailwind CSS', 'PHP', 'MySQL', 'JavaScript'],
     githubUrl: 'https://github.com/ReyhanZidany/DipoHelp',
-    demoUrl: '',
+    demoUrl:  '',
     highlights: [
       'Built multi-category service system (Academic, Finance, IT, Facilities, Student Affairs)',
       'Developed comprehensive ticketing system with automated routing',
@@ -109,10 +131,26 @@ export const projects = [
     ],
   },
   {
-    id: 3,
+    id: 4,
+    title: 'Mr. Beans – Coffee E-Commerce Platform',
+    thumbnail: '/mrbeans. png',
+    description: 'Modern e-commerce web application for browsing and ordering coffee products with dynamic API integration and responsive design.',
+    tags: ['React.js', 'Firebase', 'Tailwind CSS', 'REST API'],
+    githubUrl: 'https://github.com/ReyhanZidany/MrBeans',
+    demoUrl: 'https://mrbeans-coffee.web.app',
+    highlights: [
+      'Built responsive e-commerce interface with React.js and Tailwind CSS',
+      'Integrated Fake Coffee API for dynamic product data fetching',
+      'Implemented shopping cart functionality with add-to-cart features',
+      'Deployed on Firebase with optimized performance',
+      'Designed clean, modern UI supporting all screen sizes',
+    ],
+  },
+  {
+    id: 5,
     title: 'Helpdesk Management System',
     thumbnail: '/landscape-ticket.png',
-    description: 'Full-featured helpdesk ticketing system for PT. IPC Terminal Petikemas with PIC assignment and history logging.',
+    description: 'Full-featured helpdesk ticketing system for PT.  IPC Terminal Petikemas with PIC assignment and history logging.',
     tags: ['Laravel', 'Tailwind CSS', 'JavaScript', 'MySQL'],
     githubUrl: 'https://github.com/ReyhanZidany/ServiceNow',
     demoUrl: '',
@@ -124,13 +162,13 @@ export const projects = [
     ],
   },
   {
-    id: 4,
-    title: 'Android Mobile App – Bangkit',
+    id: 6,
+    title: 'Dopamind+ - Android Mobile App',
     thumbnail: '/dopamind-landscape.jpg',
     description: 'Mobile application developed during Bangkit Academy using Kotlin with MVVM architecture and cloud integration.',
-    tags: ['Kotlin', 'Firebase', 'Retrofit', 'MVVM'],
+    tags: ['Kotlin', 'Firebase'],
     githubUrl: 'https://github.com/DopamindPlus',
-    demoUrl: '',
+    demoUrl:  '',
     highlights: [
       'Implemented MVVM architecture and local caching',
       'Developed UI/UX using Jetpack & Material Design',
@@ -141,39 +179,32 @@ export const projects = [
 ]
 
 export const skills = [
-  // Programming Languages
   { name: 'PHP', icon: 'SiPhp', category: 'languages' },
-  { name: 'JavaScript', icon: 'IoLogoJavascript', category: 'languages' },
+  { name:  'JavaScript', icon: 'IoLogoJavascript', category: 'languages' },
   { name: 'TypeScript', icon: 'SiTypescript', category: 'languages' },
   { name: 'Python', icon: 'FaPython', category: 'languages' },
   { name: 'Java', icon: 'FaJava', category: 'languages' },
-  { name: 'Kotlin', icon: 'SiKotlin', category: 'languages' },
+  { name: 'Kotlin', icon: 'SiKotlin', category:  'languages' },
 
-    // Frontend
-  { name: 'React.js', icon: 'FaReact', category: 'frontend' },
-  { name: 'Tailwind CSS', icon: 'SiTailwindcss', category: 'frontend' },
+  { name:  'React.js', icon: 'FaReact', category: 'frontend' },
+  { name: 'Tailwind CSS', icon: 'SiTailwindcss', category:  'frontend' },
   
-  // Backend
-  { name: 'Laravel', icon: 'FaLaravel', category: 'backend' },
+  { name:  'Laravel', icon: 'FaLaravel', category:  'backend' },
   { name: 'Node.js', icon: 'FaNode', category: 'backend' },
   { name: 'Express', icon: 'SiExpress', category: 'backend' },
   { name: 'Spring Boot', icon: 'SiSpringboot', category: 'backend' },
 
-  // Blockchain
-  { name: 'Hyperledger Fabric', icon: 'SiHyperledger', category: 'blockchain' },
+  { name: 'Hyperledger Fabric', icon:  'SiHyperledger', category: 'blockchain' },
   
-  // Database
   { name: 'MySQL', icon: 'SiMysql', category: 'database' },
   { name: 'Oracle', icon: 'SiOracle', category: 'database' },
   { name: 'Firebase', icon: 'SiFirebase', category: 'database' },
-  { name: 'CouchDB', icon: 'SiApachecouchdb', category: 'database' },
+  { name:  'CouchDB', icon:  'SiApachecouchdb', category: 'database' },
   
-  // DevOps & Tools
   { name: 'Git', icon: 'FaGitAlt', category: 'tools' },
   { name: 'Docker', icon: 'FaDocker', category: 'tools' },
   { name: 'Postman', icon: 'SiPostman', category: 'tools' },
   
-  // Testing
   { name: 'JMeter', icon: 'SiApachejmeter', category: 'testing' },
 ]
 
@@ -183,7 +214,7 @@ export const organizations = [
     title: 'Staff of Interests, Talents, & Hobbies Department',
     organization: 'Himpunan Mahasiswa Teknik Komputer, Universitas Diponegoro',
     period: 'August 2023 - April 2025',
-    logo: 'himaskom-nobg.png',
+    logo: 'himaskom.png',
     achievements: [
       'Led Rembug UKM inauguration event for student activity unit leaders',
       'Coordinated field operations for THE ACE 2024 anniversary event',

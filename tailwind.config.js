@@ -7,19 +7,19 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        // Tema abu-abu saja
-        primary: {
-          DEFAULT: '#1f2937',  // Gray-800
-          dark: '#111827',     // Gray-900
-          light: '#374151',    // Gray-700
-        },
-      },
       fontFamily: {
-        sans: ['DM Sans', 'sans-serif'],
-        display: ['Space Grotesk', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
+      maxWidth: {
+        'content':  '680px',
+      },
+      colors: {
+        border: 'hsl(var(--border))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
       },
     },
   },
-  plugins: [],
+  plugins:  [],
 }

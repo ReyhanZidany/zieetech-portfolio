@@ -2,19 +2,19 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useForm } from 'react-hook-form'
-import { personalInfo, socialLinks } from '../data/portfolio'
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaCheckCircle } from 'react-icons/fa'
-import type { ContactForm } from '../types'
+import { personalInfo } from '../data/portfolio'
+import { FaGithub, FaLinkedin, FaPaperPlane, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa'
+
+interface ContactForm {
+  name: string
+  email: string
+  message: string
+}
 
 const Contact = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
-  const [submitMessage, setSubmitMessage] = useState('')
 
   const {
     register,
@@ -26,7 +26,6 @@ const Contact = () => {
   const onSubmit = async (data: ContactForm) => {
     setIsSubmitting(true)
     setSubmitStatus(null)
-    setSubmitMessage('')
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -39,9 +38,8 @@ const Contact = () => {
           access_key: 'a7b31cc3-4959-4ce3-887c-1ed989300e3e',
           name: data.name,
           email: data.email,
-          subject: data.subject,
           message: data.message,
-          from_name: 'Portfolio Contact Form',
+          from_name: 'Portfolio Contact',
         })
       })
 
@@ -49,227 +47,179 @@ const Contact = () => {
 
       if (result.success) {
         setSubmitStatus('success')
-        setSubmitMessage('Thank you for reaching out! I will get back to you soon.')
         reset()
-        
-        setTimeout(() => {
-          setSubmitStatus(null)
-          setSubmitMessage('')
-        }, 5000)
+        setTimeout(() => setSubmitStatus(null), 5000)
       } else {
-        throw new Error('Submission failed')
+        throw new Error('Failed')
       }
     } catch (error) {
       setSubmitStatus('error')
-      setSubmitMessage('Oops! Something went wrong. Please try again or contact me directly via email.')
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  const iconComponents: { [key: string]: any } = {
-    FaGithub,
-    FaLinkedin,
-    FaEnvelope,
-  }
-
   return (
-    <section id="contact" className="section-padding bg-white dark:bg-gray-950" ref={ref}>
-      <div className="container-custom">
+    <section id="contact" className="py-12 px-6" ref={ref}>
+      <div className="max-w-content mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display gradient-text">Get In Touch</h2>
-          <div className="w-20 h-1 bg-gray-800 dark:bg-gray-200 mx-auto mb-4" />
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out! 
-          </p>
-        </motion.div>
+          {/* Header */}
+          <div className="mb-12">
+            <p className="text-sm font-mono text-gray-500 dark:text-gray-400 mb-4">Contact</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Let's build something together
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-lg">
+              Have a project in mind or just want to chat? Drop me a message or reach out through social media.
+            </p>
+          </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Left Side - Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-8"
-          >
+          <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Info */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Contact Information</h3>
-              
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
-                    <FaEnvelope className="text-xl text-gray-800 dark:text-gray-200" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Email</p>
-                    <a 
-                      href={`mailto:${personalInfo.email}`} 
-                      className="text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-                    >
-                      {personalInfo.email}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
-                    <FaPhone className="text-xl text-gray-800 dark:text-gray-200" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Phone</p>
-                    <a 
-                      href={`tel:${personalInfo.phone}`} 
-                      className="text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-                    >
-                      {personalInfo.phone}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
-                    <FaMapMarkerAlt className="text-xl text-gray-800 dark:text-gray-200" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Location</p>
-                    <p className="text-gray-900 dark:text-gray-100">{personalInfo.location}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div>
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Connect With Me</h4>
-              <div className="flex gap-4">
-                {socialLinks.map((social) => {
-                  const Icon = iconComponents[social.icon]
-                  return (
-                    <motion.a
-                      key={social.name}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-800 dark:text-gray-200 hover:bg-gray-900 dark:hover:bg-gray-100 hover:text-white dark:hover:text-gray-900 transition-all duration-300"
-                      whileHover={{ scale: 1.1, y: -5 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Icon className="text-xl" />
-                    </motion.a>
-                  )
-                })}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right Side - Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <form onSubmit={handleSubmit(onSubmit)} className="card space-y-6">
+            <div className="space-y-8">
+              {/* Email */}
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">
-                  Name *
-                </label>
+                <p className="text-xs font-mono text-gray-500 dark:text-gray-400 mb-2">EMAIL</p>
+                <a 
+                  href={`mailto:${personalInfo.email}`}
+                  className="text-lg text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors font-mono"
+                >
+                  {personalInfo.email}
+                </a>
+              </div>
+
+              {/* Social */}
+              <div>
+                <p className="text-xs font-mono text-gray-500 dark:text-gray-400 mb-3">SOCIALS</p>
+                <div className="flex gap-4">
+                  <a
+                    href={`https://github.com/${personalInfo.github || 'ReyhanZidany'}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors group"
+                  >
+                    <FaGithub className="text-xl" />
+                    <span className="text-sm font-mono group-hover:underline underline-offset-4">GitHub</span>
+                  </a>
+                  <a
+                    href={personalInfo.linkedin || 'https://linkedin.com'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors group"
+                  >
+                    <FaLinkedin className="text-xl" />
+                    <span className="text-sm font-mono group-hover:underline underline-offset-4">LinkedIn</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Location */}
+              <div>
+                <p className="text-xs font-mono text-gray-500 dark:text-gray-400 mb-2">LOCATION</p>
+                <p className="text-gray-900 dark:text-white font-mono">{personalInfo.location}</p>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              {/* Name */}
+              <div>
                 <input
-                  {...register('name', { required: 'Name is required' })}
+                  {...register('name', { required: 'Name required' })}
                   type="text"
-                  id="name"
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-gray-900 dark:text-gray-100 transition-all"
-                  placeholder="Your name"
+                  placeholder="Name"
+                  className="w-full px-0 py-3 bg-transparent border-b-2 border-gray-200 dark:border-gray-800 focus:border-gray-900 dark:focus:border-white focus:outline-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 transition-colors font-mono"
                 />
-                {errors.name && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name.message}</p>}
+                {errors.name && (
+                  <p className="mt-2 text-xs text-red-500 font-mono">{errors.name.message}</p>
+                )}
               </div>
 
+              {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">
-                  Email *
-                </label>
                 <input
                   {...register('email', {
-                    required: 'Email is required',
+                    required: 'Email required',
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: 'Invalid email address',
+                      message: 'Invalid email',
                     },
                   })}
                   type="email"
-                  id="email"
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-gray-900 dark:text-gray-100 transition-all"
-                  placeholder="your.email@example.com"
+                  placeholder="Email"
+                  className="w-full px-0 py-3 bg-transparent border-b-2 border-gray-200 dark:border-gray-800 focus:border-gray-900 dark:focus:border-white focus:outline-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 transition-colors font-mono"
                 />
-                {errors.email && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email.message}</p>}
+                {errors.email && (
+                  <p className="mt-2 text-xs text-red-500 font-mono">{errors.email.message}</p>
+                )}
               </div>
 
+              {/* Message */}
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">
-                  Subject *
-                </label>
-                <input
-                  {...register('subject', { required: 'Subject is required' })}
-                  type="text"
-                  id="subject"
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-gray-900 dark:text-gray-100 transition-all"
-                  placeholder="Project inquiry"
-                />
-                {errors.subject && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.subject.message}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">
-                  Message *
-                </label>
                 <textarea
-                  {...register('message', { 
-                    required: 'Message is required', 
-                    minLength: { value: 10, message: 'Message must be at least 10 characters' } 
+                  {...register('message', {
+                    required: 'Message required',
+                    minLength:  { value: 10, message:  'Min 10 characters' },
                   })}
-                  id="message"
-                  rows={5}
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-gray-900 dark:text-gray-100 resize-none transition-all"
-                  placeholder="Tell me about your project..."
+                  rows={4}
+                  placeholder="Message"
+                  className="w-full px-0 py-3 bg-transparent border-b-2 border-gray-200 dark:border-gray-800 focus:border-gray-900 dark:focus:border-white focus:outline-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 resize-none transition-colors font-mono"
                 />
-                {errors.message && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message.message}</p>}
+                {errors.message && (
+                  <p className="mt-2 text-xs text-red-500 font-mono">{errors.message.message}</p>
+                )}
               </div>
 
+              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full btn-primary justify-center disabled:opacity-50 disabled:cursor-not-allowed group"
+                className="w-full px-6 py-4 bg-gray-900 dark:bg-white text-white dark:text-black font-mono text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 rounded-none border-2 border-gray-900 dark:border-white"
               >
                 {isSubmitting ? (
-                  <span>Sending...</span>
+                  <span>SENDING...</span>
                 ) : (
                   <>
-                    <FaPaperPlane className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                    <span>Send Message</span>
+                    <span>SEND MESSAGE</span>
+                    <FaPaperPlane className="text-xs" />
                   </>
                 )}
               </button>
 
-              {submitMessage && (
+              {/* Status Message */}
+              {submitStatus && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700"
+                  className={`p-4 border-2 ${
+                    submitStatus === 'success'
+                      ? 'border-green-500 bg-green-500/10'
+                      : 'border-red-500 bg-red-500/10'
+                  }`}
                 >
-                  <div className="flex items-center gap-2 text-gray-900 dark:text-gray-100">
-                    {submitStatus === 'success' && <FaCheckCircle className="flex-shrink-0" />}
-                    <p className="text-sm">{submitMessage}</p>
+                  <div className="flex items-center gap-3">
+                    {submitStatus === 'success' ?  (
+                      <FaCheckCircle className="text-green-500 flex-shrink-0" />
+                    ) : (
+                      <FaExclamationCircle className="text-red-500 flex-shrink-0" />
+                    )}
+                    <p className={`text-sm font-mono ${
+                      submitStatus === 'success' ?  'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'
+                    }`}>
+                      {submitStatus === 'success'
+                        ? 'Message sent successfully!'
+                        : 'Failed to send. Try email instead.'}
+                    </p>
                   </div>
                 </motion.div>
               )}
             </form>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
