@@ -13,6 +13,7 @@
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.2",
     "@react-three/rapier": "^2.2.0",
+    "firebase": "^12.7.0",
     "framer-motion": "^12.23.25",
     "gsap": "^3.13.0",
     "meshline": "^3.3.1",
