@@ -193,6 +193,7 @@ export const skills = [
   { name: 'Node.js', icon: 'FaNode', category: 'backend' },
   { name: 'Express', icon: 'SiExpress', category: 'backend' },
   { name: 'Spring Boot', icon: 'SiSpringboot', category: 'backend' },
+  {name: 'Ruby on Rails', icon: 'SiRubyonrails', category: 'backend' },
 
   { name: 'Hyperledger Fabric', icon:  'SiHyperledger', category: 'blockchain' },
   
@@ -248,49 +249,70 @@ export const organizations = [
 ]
 
 export const certifications = [
-  { name: 'Cisco – IT Essentials',
+  { 
+    name: 'Cisco – IT Essentials',
     issuer: 'Cisco', 
     credentialUrl: 'https://www.credly.com/badges/f32a708c-abd3-45c6-a11b-102443902117',
-    logo: '/cisco.png' 
+    logo:  '/cisco.png' 
   },
-  { name: 'CCNA Intro to Networks', 
+  { 
+    name: 'CCNA Intro to Networks', 
     issuer: 'Cisco', 
     credentialUrl: 'https://www.credly.com/badges/06bdd403-0fa7-497b-b50a-cd2e9ba962ba',
     logo: '/cisco.png'  
   },
-  { name: 'CCNAv7: Switching, Routing, and Wireless Essentials', 
+  { 
+    name: 'CCNAv7: Switching, Routing, and Wireless Essentials', 
     issuer: 'Cisco', 
     credentialUrl: 'https://www.credly.com/badges/9ed766d2-752c-4ec1-938e-5fdc75b4cbbd',
-    logo: '/cisco.png'  
+    logo:  '/cisco.png'  
   },
-  { name: 'Database Design', 
+  { 
+    name: 'Database Design', 
+    issuer: 'Oracle', 
+    certificatePDF:  '/certificates/Oracle_Certificate.pdf',
+    logo: '/oracle.png'  
+  },
+  { 
+    name: 'Database Foundation', 
     issuer: 'Oracle', 
     certificatePDF: '/certificates/Oracle_Certificate.pdf',
     logo: '/oracle.png'  
   },
-  { name: 'Database Foundation', 
-    issuer: 'Oracle', 
-    certificatePDF: '/certificates/Oracle_Certificate.pdf',
-    logo: '/oracle.png'  
-  },
-  { name: 'Kotlin Programming', 
+  { 
+    name: 'Kotlin Programming', 
     issuer: 'Dicoding', 
     credentialUrl: 'https://www.dicoding.com/certificates/NVP74G79VPR0',
-    logo: '/dicoding.png'  
+    logo:  '/dicoding.png'  
   },
-  { name: 'Android Basic & Fundamentals', 
+  { 
+    name: 'Android Basic & Fundamentals', 
     issuer: 'Dicoding', 
     credentialUrl: 'https://www.dicoding.com/certificates/81P244DYJZOY',
-    logo: '/dicoding.png'  
+    logo:  '/dicoding.png'  
   },
-  { name: 'Machine Learning for Android', 
+  { 
+    name: 'Machine Learning for Android', 
     issuer: 'Dicoding', 
     credentialUrl: 'https://www.dicoding.com/certificates/4EXG7J2DEPRL',
-    logo: '/dicoding.png'  
+    logo:  '/dicoding.png'  
   },
-  { name: 'Python for Software Development', 
+  { 
+    name: 'Python for Software Development', 
     issuer: 'Progate', 
     certificatePDF: '/certificates/python_certificate.pdf',
     logo: '/progate.jpg' 
+  },
+  { 
+    name: 'Hyperledger Fabric 2.x Basic & Advanced Network Operations', 
+    issuer: 'Udemy', 
+    credentialUrl: 'https://drive.google.com/file/d/1X7z3-tX4gZgflBlAOOHrn45xwqGJ2i5e/view?usp=sharing',
+    logo: '/udemylogo.png' 
+  },
+  { 
+    name: 'Awardee Mutiara Pelindo Scholarship', 
+    issuer: 'Pelindo', 
+    credentialUrl: 'https://drive.google.com/file/d/1Ead8UbvjHsWJqlwXFcrGDbgC3Ru0Vceq/view? usp=sharing',
+    logo: '/pelindo_nobg.png' 
   },
 ]
