@@ -85,7 +85,7 @@ const Contact = () => {
         >
           {/* Header */}
           <div className="mb-12">
-            <p className="text-sm font-mono text-gray-500 dark: text-gray-400 mb-4">Contact</p>
+            <p className="text-sm font-mono text-gray-500 dark:text-gray-400 mb-4">Contact</p>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Let's build something together
             </h2>
@@ -108,7 +108,7 @@ const Contact = () => {
                       action: 'Clicked Email Link'
                     })
                   }}
-                  className="text-lg text-gray-900 dark: text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors font-mono"
+                  className="text-lg text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors font-mono"
                 >
                   {personalInfo.email}
                 </a>
@@ -128,7 +128,7 @@ const Contact = () => {
                         action: 'Clicked GitHub from Contact'
                       })
                     }}
-                    className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover: text-white transition-colors group"
+                    className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors group"
                   >
                     <FaGithub className="text-xl" />
                     <span className="text-sm font-mono group-hover:underline underline-offset-4">GitHub</span>
@@ -153,7 +153,7 @@ const Contact = () => {
 
               {/* Location */}
               <div>
-                <p className="text-xs font-mono text-gray-500 dark: text-gray-400 mb-2">LOCATION</p>
+                <p className="text-xs font-mono text-gray-500 dark:text-gray-400 mb-2">LOCATION</p>
                 <p className="text-gray-900 dark:text-white font-mono">{personalInfo.location}</p>
               </div>
             </div>
@@ -185,7 +185,7 @@ const Contact = () => {
                   })}
                   type="email"
                   placeholder="Email"
-                  className="w-full px-0 py-3 bg-transparent border-b-2 border-gray-200 dark: border-gray-800 focus: border-gray-900 dark: focus:border-white focus:outline-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 transition-colors font-mono"
+                  className="w-full px-0 py-3 bg-transparent border-b-2 border-gray-200 dark:border-gray-800 focus:border-gray-900 dark:focus:border-white focus:outline-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 transition-colors font-mono"
                 />
                 {errors.email && (
                   <p className="mt-2 text-xs text-red-500 font-mono">{errors.email.message}</p>
@@ -245,7 +245,7 @@ const Contact = () => {
                       submitStatus === 'success' ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'
                     }`}>
                       {submitStatus === 'success'
-                        ?  'Message sent successfully!'
+                        ? 'Message sent successfully!'
                         : 'Failed to send. Try email instead.'}
                     </p>
                   </div>

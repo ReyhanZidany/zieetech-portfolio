@@ -32,7 +32,7 @@ export const education = {
   degree: 'Bachelor of Engineering - Computer Engineering',
   location: 'Semarang, Indonesia',
   period: '2022 - Present',
-  gpa: '3.77/4.00',
+  gpa: '3.74/4.00',
 }
 
 export const experiences = [
@@ -41,7 +41,7 @@ export const experiences = [
     title: 'IT Infrastructure Development Intern',
     company: 'Indonesia Stock Exchange (IDX)',
     period: 'January 2025 - February 2025',
-    location:  'Jakarta, Indonesia',
+    location: 'Jakarta, Indonesia',
     type: 'Internship',
     logo: '/logo_idx.jpg',
     responsibilities: [
@@ -53,13 +53,13 @@ export const experiences = [
   },
   {
     id: 2,
-    title:  'Fullstack Developer Intern',
+    title: 'Fullstack Developer Intern',
     company: 'PT. IPC Terminal Petikemas',
     period: 'June 2024 - August 2024',
     location: 'Jakarta, Indonesia',
-    type:  'Internship',
+    type: 'Internship',
     logo: '/pelindo_nobg.png',
-    responsibilities:  [
+    responsibilities: [
       'Developed responsive helpdesk web application using Laravel and JavaScript',
       'Designed and managed MySQL databases for efficient data storage',
       'Created comprehensive technical documentation for features and modules',
@@ -71,7 +71,7 @@ export const experiences = [
     title: 'Mobile Development Cohort',
     company: 'Bangkit Academy (Google, Tokopedia, Gojek, Traveloka)',
     period: 'September 2024 - December 2024',
-    location:  'Remote',
+    location: 'Remote',
     type: 'Training',
     logo: '/bangkit_logo.jpg',
     responsibilities: [
@@ -85,12 +85,42 @@ export const experiences = [
 
 export const projects = [
   {
+    id: 7,
+    title: 'Based - Onchain Reputation',
+    thumbnail: '',
+    description: 'Onchain Reputation platform for minting achievement proofs. Built for Base Indonesia Hackathon 2025.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Solidity', 'OnchainKit'],
+    githubUrl: 'https://github.com/ReyhanZidany/based',
+    demoUrl: 'https://based-indonesia.vercel.app/',
+    highlights: [
+      'Built for Base Indonesia Hackathon 2025',
+      'Developed robust onchain proof minting system',
+      'Integrated Coinbase Smart Wallet for seamless UX',
+      'Designed responsive Neo-Brutalist interface',
+    ],
+  },
+  {
+    id: 8,
+    title: 'TraceFarm - Agricultural Traceability',
+    thumbnail: '',
+    description: 'End-to-end blockchain application for transparent agricultural product traceability from verified farmers to crop batch lifecycle.',
+    tags: ['Solidity', 'Express.js', 'React.js', 'Hardhat', 'Ethers.js'],
+    githubUrl: 'https://github.com/ReyhanZidany/TraceFarm',
+    demoUrl: '',
+    highlights: [
+      'Implemented Farmer Identity & Verification on-chain',
+      'Developed Crop Batch Lifecycle tracking system',
+      'Designed Full Stack Web3 Architecture (Solidity, Node.js, React)',
+      'Built with Hardhat and Ethers.js for Ethereum compatibility',
+    ],
+  },
+  {
     id: 1,
     title: 'ChainCarbon – Blockchain Carbon Marketplace',
     thumbnail: '/cb-ls.jpeg',
     description: 'Blockchain-based carbon certificate trading platform using Hyperledger Fabric with multi-organization network.',
     tags: ['Hyperledger Fabric', 'Node.js', 'React.js', 'MySQL', 'CouchDB'],
-    githubUrl:  'https://github.com/ReyhanZidany/ChainCarbon',
+    githubUrl: 'https://github.com/ReyhanZidany/ChainCarbon',
     demoUrl: '',
     highlights: [
       'Developed smart contracts for certificate creation, trading, and retirement',
@@ -101,11 +131,11 @@ export const projects = [
   },
   {
     id: 2,
-    title:  'StockHub – Enterprise Resource Planning (ERP)',
+    title: 'StockHub – Enterprise Resource Planning (ERP)',
     thumbnail: '/stockhub-ls.jpeg',
     description: 'Comprehensive ERP solution designed for efficient inventory management with decoupled architecture featuring React frontend and Rails API backend.',
     tags: ['React.js', 'Ruby on Rails', 'JavaScript', 'Docker', 'REST API'],
-    githubUrl:  'https://github.com/ReyhanZidany/StockHub',
+    githubUrl: 'https://github.com/ReyhanZidany/StockHub',
     demoUrl: 'https://stockkhub.vercel.app',
     highlights: [
       'Built comprehensive supplier management system with vendor tracking',
@@ -121,7 +151,7 @@ export const projects = [
     description: 'Integrated service platform for Diponegoro University providing streamlined access to IT support, facilities, academic services, and student activities.',
     tags: ['Laravel', 'Tailwind CSS', 'PHP', 'MySQL', 'JavaScript'],
     githubUrl: 'https://github.com/ReyhanZidany/DipoHelp',
-    demoUrl:  '',
+    demoUrl: '',
     highlights: [
       'Built multi-category service system (Academic, Finance, IT, Facilities, Student Affairs)',
       'Developed comprehensive ticketing system with automated routing',
@@ -168,7 +198,7 @@ export const projects = [
     description: 'Mobile application developed during Bangkit Academy using Kotlin with MVVM architecture and cloud integration.',
     tags: ['Kotlin', 'Firebase'],
     githubUrl: 'https://github.com/DopamindPlus',
-    demoUrl:  '',
+    demoUrl: '',
     highlights: [
       'Implemented MVVM architecture and local caching',
       'Developed UI/UX using Jetpack & Material Design',
@@ -180,32 +210,33 @@ export const projects = [
 
 export const skills = [
   { name: 'PHP', icon: 'SiPhp', category: 'languages' },
-  { name:  'JavaScript', icon: 'IoLogoJavascript', category: 'languages' },
+  { name: 'JavaScript', icon: 'IoLogoJavascript', category: 'languages' },
   { name: 'TypeScript', icon: 'SiTypescript', category: 'languages' },
   { name: 'Python', icon: 'FaPython', category: 'languages' },
   { name: 'Java', icon: 'FaJava', category: 'languages' },
-  { name: 'Kotlin', icon: 'SiKotlin', category:  'languages' },
+  { name: 'Kotlin', icon: 'SiKotlin', category: 'languages' },
 
-  { name:  'React.js', icon: 'FaReact', category: 'frontend' },
-  { name: 'Tailwind CSS', icon: 'SiTailwindcss', category:  'frontend' },
-  
-  { name:  'Laravel', icon: 'FaLaravel', category:  'backend' },
+  { name: 'React.js', icon: 'FaReact', category: 'frontend' },
+  { name: 'Tailwind CSS', icon: 'SiTailwindcss', category: 'frontend' },
+
+  { name: 'Laravel', icon: 'FaLaravel', category: 'backend' },
   { name: 'Node.js', icon: 'FaNode', category: 'backend' },
   { name: 'Express', icon: 'SiExpress', category: 'backend' },
   { name: 'Spring Boot', icon: 'SiSpringboot', category: 'backend' },
-  {name: 'Ruby on Rails', icon: 'SiRubyonrails', category: 'backend' },
+  { name: 'Ruby on Rails', icon: 'SiRubyonrails', category: 'backend' },
 
-  { name: 'Hyperledger Fabric', icon:  'SiHyperledger', category: 'blockchain' },
-  
+  { name: 'Hyperledger Fabric', icon: 'SiHyperledger', category: 'blockchain' },
+  { name: 'Solidity', icon: 'SiSolidity', category: 'blockchain' },
+
   { name: 'MySQL', icon: 'SiMysql', category: 'database' },
   { name: 'Oracle', icon: 'SiOracle', category: 'database' },
   { name: 'Firebase', icon: 'SiFirebase', category: 'database' },
-  { name:  'CouchDB', icon:  'SiApachecouchdb', category: 'database' },
-  
+  { name: 'CouchDB', icon: 'SiApachecouchdb', category: 'database' },
+
   { name: 'Git', icon: 'FaGitAlt', category: 'tools' },
   { name: 'Docker', icon: 'FaDocker', category: 'tools' },
   { name: 'Postman', icon: 'SiPostman', category: 'tools' },
-  
+
   { name: 'JMeter', icon: 'SiApachejmeter', category: 'testing' },
 ]
 
@@ -249,70 +280,70 @@ export const organizations = [
 ]
 
 export const certifications = [
-  { 
+  {
     name: 'Cisco – IT Essentials',
-    issuer: 'Cisco', 
+    issuer: 'Cisco',
     credentialUrl: 'https://www.credly.com/badges/f32a708c-abd3-45c6-a11b-102443902117',
-    logo:  '/cisco.png' 
+    logo: '/cisco.png'
   },
-  { 
-    name: 'CCNA Intro to Networks', 
-    issuer: 'Cisco', 
+  {
+    name: 'CCNA Intro to Networks',
+    issuer: 'Cisco',
     credentialUrl: 'https://www.credly.com/badges/06bdd403-0fa7-497b-b50a-cd2e9ba962ba',
-    logo: '/cisco.png'  
+    logo: '/cisco.png'
   },
-  { 
-    name: 'CCNAv7: Switching, Routing, and Wireless Essentials', 
-    issuer: 'Cisco', 
+  {
+    name: 'CCNAv7: Switching, Routing, and Wireless Essentials',
+    issuer: 'Cisco',
     credentialUrl: 'https://www.credly.com/badges/9ed766d2-752c-4ec1-938e-5fdc75b4cbbd',
-    logo:  '/cisco.png'  
+    logo: '/cisco.png'
   },
-  { 
-    name: 'Database Design', 
-    issuer: 'Oracle', 
-    certificatePDF:  '/certificates/Oracle_Certificate.pdf',
-    logo: '/oracle.png'  
-  },
-  { 
-    name: 'Database Foundation', 
-    issuer: 'Oracle', 
+  {
+    name: 'Database Design',
+    issuer: 'Oracle',
     certificatePDF: '/certificates/Oracle_Certificate.pdf',
-    logo: '/oracle.png'  
+    logo: '/oracle.png'
   },
-  { 
-    name: 'Kotlin Programming', 
-    issuer: 'Dicoding', 
+  {
+    name: 'Database Foundation',
+    issuer: 'Oracle',
+    certificatePDF: '/certificates/Oracle_Certificate.pdf',
+    logo: '/oracle.png'
+  },
+  {
+    name: 'Kotlin Programming',
+    issuer: 'Dicoding',
     credentialUrl: 'https://www.dicoding.com/certificates/NVP74G79VPR0',
-    logo:  '/dicoding.png'  
+    logo: '/dicoding.png'
   },
-  { 
-    name: 'Android Basic & Fundamentals', 
-    issuer: 'Dicoding', 
+  {
+    name: 'Android Basic & Fundamentals',
+    issuer: 'Dicoding',
     credentialUrl: 'https://www.dicoding.com/certificates/81P244DYJZOY',
-    logo:  '/dicoding.png'  
+    logo: '/dicoding.png'
   },
-  { 
-    name: 'Machine Learning for Android', 
-    issuer: 'Dicoding', 
+  {
+    name: 'Machine Learning for Android',
+    issuer: 'Dicoding',
     credentialUrl: 'https://www.dicoding.com/certificates/4EXG7J2DEPRL',
-    logo:  '/dicoding.png'  
+    logo: '/dicoding.png'
   },
-  { 
-    name: 'Python for Software Development', 
-    issuer: 'Progate', 
+  {
+    name: 'Python for Software Development',
+    issuer: 'Progate',
     certificatePDF: '/certificates/python_certificate.pdf',
-    logo: '/progate.jpg' 
+    logo: '/progate.jpg'
   },
-  { 
-    name: 'Hyperledger Fabric 2.x Basic & Advanced Network Operations', 
-    issuer: 'Udemy', 
+  {
+    name: 'Hyperledger Fabric 2.x Basic & Advanced Network Operations',
+    issuer: 'Udemy',
     credentialUrl: 'https://drive.google.com/file/d/1X7z3-tX4gZgflBlAOOHrn45xwqGJ2i5e/view?usp=sharing',
-    logo: '/udemylogo.png' 
+    logo: '/udemylogo.png'
   },
-  { 
-    name: 'Awardee Mutiara Pelindo Scholarship', 
-    issuer: 'Pelindo', 
+  {
+    name: 'Awardee Mutiara Pelindo Scholarship',
+    issuer: 'Pelindo',
     credentialUrl: 'https://drive.google.com/file/d/1Ead8UbvjHsWJqlwXFcrGDbgC3Ru0Vceq/view? usp=sharing',
-    logo: '/pelindo_nobg.png' 
+    logo: '/pelindo_nobg.png'
   },
 ]
