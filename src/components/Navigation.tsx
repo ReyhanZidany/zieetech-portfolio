@@ -56,31 +56,35 @@ const Navigation = () => {
 
   const navItems = [
     { id: 'hero', icon: FaHome, label: 'Home' },
-    { id: 'about', icon: FaUser, label:  'About' },
-    { id: 'projects', icon:  FaCode, label: 'Projects' },
-    { id:  'experience', icon: FaBriefcase, label: 'Experience' },
-    { id:  'contact', icon: FaEnvelope, label: 'Contact' },
+    { id: 'about', icon: FaUser, label: 'About' },
+    { id: 'projects', icon: FaCode, label: 'Projects' },
+    { id: 'experience', icon: FaBriefcase, label: 'Experience' },
+    { id: 'contact', icon: FaEnvelope, label: 'Contact' },
   ]
 
   return (
     <motion.nav
       initial={{ opacity: 0, y: 100 }}
-      animate={{ 
-        opacity: isFooterVisible ? 0 :  1, 
-        y:  isFooterVisible ? 100 : 0 
+      animate={{
+        opacity: isFooterVisible ? 0 : 1,
+        y: isFooterVisible ? 100 : 0
       }}
       transition={{ duration: 0.3 }}
       className="fixed bottom-6 left-[calc(50%-150px)] md:left-[calc(50%-220px)] z-[100]"
-      style={{ pointerEvents:isFooterVisible ?  'none' :'auto' }}
+      style={{ pointerEvents: isFooterVisible ? 'none' : 'auto' }}
     >
       <div className="bg-white/80 dark:bg-black/80 backdrop-blur-md rounded-full border border-gray-200 dark:border-gray-800 shadow-2xl px-4 py-3 flex items-center justify-center">
         <div className="flex items-center gap-2">
           {/* Logo - Hidden on mobile */}
-          <a 
+          <a
             href="#hero"
             className="text-sm font-bold font-mono text-gray-900 dark:text-white px-3 py-2 hover:text-gray-600 dark:hover:text-gray-300 transition-colors hidden md:block"
           >
-            {'</zie>'}
+            <img
+              src="/rz-peanuts.png"
+              alt="Logo"
+              className="h-8 w-auto object-contain"
+            />
           </a>
 
           <div className="w-px h-6 bg-gray-200 dark:bg-gray-800 mx-1 hidden md:block" />
@@ -90,7 +94,7 @@ const Navigation = () => {
             {navItems.map((item) => {
               const Icon = item.icon
               const isActive = activeSection === item.id
-              
+
               return (
                 <a
                   key={item.id}
@@ -101,15 +105,14 @@ const Navigation = () => {
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`p-2.5 sm:p-3 rounded-full transition-all duration-300 ${
-                      isActive 
-                        ? 'bg-gray-900 dark:bg-white text-white dark:text-black shadow-md' 
+                    className={`p-2.5 sm:p-3 rounded-full transition-all duration-300 ${isActive
+                        ? 'bg-gray-900 dark:bg-white text-white dark:text-black shadow-md'
                         : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-                    }`}
+                      }`}
                   >
                     <Icon className="text-base sm:text-lg" />
                   </motion.div>
-                  
+
                   {/* Tooltip */}
                   <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-2 group-hover:translate-y-0 pointer-events-none">
                     <div className="bg-gray-900 dark:bg-white text-white dark:text-black text-xs font-bold px-3 py-1.5 rounded-lg shadow-xl whitespace-nowrap">
