@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 import { useInView } from 'react-intersection-observer'
 import { useForm } from 'react-hook-form'
 import { personalInfo } from '../data/portfolio'
@@ -33,14 +35,14 @@ const Contact = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept':  'application/json'
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
           access_key: 'a7b31cc3-4959-4ce3-887c-1ed989300e3e',
           name: data.name,
           email: data.email,
           message: data.message,
-          from_name:  'Portfolio Contact',
+          from_name: 'Portfolio Contact',
         })
       })
 
@@ -49,21 +51,21 @@ const Contact = () => {
       if (result.success) {
         setSubmitStatus('success')
         reset()
-        
+
         // Track successful contact form submission
         ReactGA.event({
           category: 'Contact',
           action: 'Submitted Contact Form',
           label: 'Success'
         })
-        
+
         setTimeout(() => setSubmitStatus(null), 5000)
       } else {
         throw new Error('Failed')
       }
     } catch (error) {
       setSubmitStatus('error')
-      
+
       // Track failed submission
       ReactGA.event({
         category: 'Contact',
@@ -75,14 +77,26 @@ const Contact = () => {
     }
   }
 
+  // GSAP Animation
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    // Only animate when in view (handled by ScrollTrigger internally if added,
+    // but here we use simple staggered entrance on component mount/view if we had ScrollTrigger)
+    // For now, let's just animate on mount or use intersection observer state to trigger
+
+    if (inView) {
+      gsap.fromTo(".contact-animate",
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out" }
+      )
+    }
+  }, { scope: containerRef, dependencies: [inView] })
+
   return (
     <section id="contact" className="py-12 px-6" ref={ref}>
-      <div className="max-w-content mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity:  1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-        >
+      <div className="max-w-content mx-auto" ref={containerRef}>
+        <div className="contact-animate opacity-0">
           {/* Header */}
           <div className="mb-12">
             <p className="text-sm font-mono text-gray-500 dark:text-gray-400 mb-4">Contact</p>
@@ -94,13 +108,13 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-12 contact-animate opacity-0">
             {/* Contact Info */}
             <div className="space-y-8">
               {/* Email */}
               <div>
                 <p className="text-xs font-mono text-gray-500 dark:text-gray-400 mb-2">EMAIL</p>
-                <a 
+                <a
                   href={`mailto:${personalInfo.email}`}
                   onClick={() => {
                     ReactGA.event({
@@ -197,7 +211,7 @@ const Contact = () => {
                 <textarea
                   {...register('message', {
                     required: 'Message required',
-                    minLength:  { value: 10, message: 'Min 10 characters' },
+                    minLength: { value: 10, message: 'Min 10 characters' },
                   })}
                   rows={4}
                   placeholder="Message"
@@ -229,21 +243,19 @@ const Contact = () => {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={`p-4 border-2 ${
-                    submitStatus === 'success'
-                      ? 'border-green-500 bg-green-500/10'
-                      : 'border-red-500 bg-red-500/10'
-                  }`}
+                  className={`p-4 border-2 ${submitStatus === 'success'
+                    ? 'border-green-500 bg-green-500/10'
+                    : 'border-red-500 bg-red-500/10'
+                    }`}
                 >
                   <div className="flex items-center gap-3">
-                    {submitStatus === 'success' ?  (
+                    {submitStatus === 'success' ? (
                       <FaCheckCircle className="text-green-500 flex-shrink-0" />
                     ) : (
                       <FaExclamationCircle className="text-red-500 flex-shrink-0" />
                     )}
-                    <p className={`text-sm font-mono ${
-                      submitStatus === 'success' ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'
-                    }`}>
+                    <p className={`text-sm font-mono ${submitStatus === 'success' ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'
+                      }`}>
                       {submitStatus === 'success'
                         ? 'Message sent successfully!'
                         : 'Failed to send. Try email instead.'}
@@ -253,7 +265,7 @@ const Contact = () => {
               )}
             </form>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

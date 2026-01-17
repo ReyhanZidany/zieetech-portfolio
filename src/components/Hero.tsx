@@ -1,8 +1,10 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import { personalInfo, socialLinks, skills } from '../data/portfolio'
 import { iconComponents, iconColors, customIcons } from '../utils/techIcons'
 import ScrollVelocity from './ScrollVelocity'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 
 const SkillCard = ({ skill }: { skill: any }) => {
   const Icon = iconComponents[skill.icon]
@@ -37,6 +39,8 @@ const SkillCard = ({ skill }: { skill: any }) => {
 }
 
 const Hero = () => {
+  const containerRef = useRef<HTMLElement>(null)
+
   const socialIconComponents: { [key: string]: any } = {
     FaGithub,
     FaLinkedin,
@@ -62,23 +66,49 @@ const Hero = () => {
     </div>
   )
 
+  useGSAP(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
+
+    tl.fromTo(".hero-title",
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1 }
+    )
+      .fromTo(".hero-subtitle",
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 },
+        "-=0.5"
+      )
+      .fromTo(".hero-desc",
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 },
+        "-=0.6"
+      )
+      .fromTo(".hero-social a",
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, stagger: 0.1, duration: 0.5, ease: "back.out(1.7)" },
+        "-=0.4"
+      )
+      .fromTo(".hero-scroll",
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 1 },
+        "-=0.2"
+      )
+
+  }, { scope: containerRef })
+
   return (
-    <section id="hero" className="min-h-screen flex flex-col justify-center px-6 pt-12 pb-12">
+    <section id="hero" className="min-h-screen flex flex-col justify-center px-6 pt-12 pb-12" ref={containerRef}>
       <div className="max-w-content mx-auto w-full mb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4">
+        <div>
+          <h1 className="hero-title text-5xl md:text-6xl font-bold tracking-tight mb-4 opacity-0">
             {personalInfo.name}
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-6 font-mono">
+          <p className="hero-subtitle text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-6 font-mono opacity-0">
             {personalInfo.title}
           </p>
 
-          <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl">
+          <p className="hero-desc text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl opacity-0">
             Computer Engineering student passionate about building scalable solutions.
             Experienced in{' '}
             <span className="text-gray-900 dark:text-white font-medium">fullstack development</span>
@@ -87,7 +117,7 @@ const Hero = () => {
             , and creating seamless digital experiences across the stack.
           </p>
 
-          <div className="flex items-center gap-4">
+          <div className="hero-social flex items-center gap-4">
             {socialLinks.map((social) => {
               const Icon = socialIconComponents[social.icon]
               return (
@@ -96,7 +126,7 @@ const Hero = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+                  className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors opacity-0"
                   aria-label={social.name}
                 >
                   <Icon className="text-xl" />
@@ -104,10 +134,10 @@ const Hero = () => {
               )
             })}
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center hero-scroll opacity-0">
         <div
           className="max-w-2xl w-full relative overflow-hidden"
           style={{
@@ -117,9 +147,10 @@ const Hero = () => {
         >
           <ScrollVelocity
             rows={[row1, row2]}
-            velocity={-80}
+            velocity={-100}
             className="custom-scroll-text"
             numCopies={4}
+            velocityMapping={{ input: [0, 1000], output: [0, 1] }}
           />
 
           <div className="absolute inset-0 pointer-events-none">
