@@ -10,16 +10,13 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
   const [displayText, setDisplayText] = useState('')
   const targetText = "GOOD GRIEF! WELCOME!"
 
-  // Animation settings
-  const loops = 3 // Number of scrambles per character
-  const speed = 50 // ms per frame
+  const loops = 3
+  const speed = 50
 
   useEffect(() => {
-    // Initial State: Random Hash
     const randomHash = "0x" + Math.random().toString(16).substring(2, 10).toUpperCase()
     setDisplayText(randomHash)
 
-    // Start decoding after a delay (e.g., when text fades in)
     const startDelay = setTimeout(() => {
       let iteration = 0
 
@@ -29,9 +26,8 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
             .split("")
             .map((_letter, index) => {
               if (index < iteration) {
-                return targetText[index] // Settled character
+                return targetText[index]
               }
-              // Random character during scrambling
               const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+"
               return chars[Math.floor(Math.random() * chars.length)]
             })
@@ -46,13 +42,12 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
       }, speed)
 
       return () => clearInterval(interval)
-    }, 1000) // Delay to match existing enter animation
+    }, 1000)
 
     return () => clearTimeout(startDelay)
   }, [])
 
   const handleVideoEnded = () => {
-    // Small delay to ensure smooth transition
     setTimeout(onComplete, 500)
   }
 
@@ -86,7 +81,7 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.8 }}
-        className="mt-8 text-xl md:text-2xl font-bold text-white tracking-widest uppercase font-mono min-h-[32px]"
+        className="mt-8 text-xl md:text-2xl font-bold text-white tracking-widest uppercase font-comic min-h-[32px]"
       >
         {displayText}
       </motion.h2>

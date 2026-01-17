@@ -4,12 +4,9 @@ import { personalInfo, socialLinks, skills } from '../data/portfolio'
 import { iconComponents, iconColors, customIcons } from '../utils/techIcons'
 import ScrollVelocity from './ScrollVelocity'
 
-
 const SkillCard = ({ skill }: { skill: any }) => {
   const Icon = iconComponents[skill.icon]
   const color = iconColors[skill.icon] || '#6B7280'
-
-
   const isHyperledgerFabric = skill.name === 'Hyperledger Fabric'
   const isCustom = !isHyperledgerFabric && skill.name.toLowerCase() in customIcons
 
@@ -46,11 +43,9 @@ const Hero = () => {
     FaEnvelope,
   }
 
-
   const midPoint = Math.ceil(skills.length / 2)
   const topRowSkills = skills.slice(0, midPoint)
   const bottomRowSkills = skills.slice(midPoint)
-
   const row1 = (
     <div className="flex gap-2.5 px-1.5">
       {topRowSkills.map((skill, i) => (
@@ -75,16 +70,13 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4">
             {personalInfo.name}
           </h1>
 
-
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-6 font-mono">
             {personalInfo.title}
           </p>
-
 
           <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl">
             Computer Engineering student passionate about building scalable solutions.
@@ -125,11 +117,10 @@ const Hero = () => {
         >
           <ScrollVelocity
             rows={[row1, row2]}
-            velocity={-50}
+            velocity={-80}
             className="custom-scroll-text"
             numCopies={4}
           />
-
 
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white dark:from-black to-transparent" />

@@ -15,7 +15,7 @@ const About = () => {
         >
           <p className="text-sm font-mono text-gray-500 dark:text-gray-400 mb-8">About</p>
 
-          <div className="space-y-6 text-gray-600 dark:text-gray-400 leading-relaxed">
+          <div className="space-y-6 text-gray-600 dark:text-gray-400 leading-relaxed text-justify">
             <p>
               I'm a Fullstack & Blockchain Developer based in{' '}
               <span className="text-gray-900 dark:text-white font-medium">Jakarta, Indonesia</span>.

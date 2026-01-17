@@ -32,7 +32,6 @@ interface VelocityTextProps {
 
 interface ScrollVelocityProps {
     scrollContainerRef?: React.RefObject<HTMLElement>;
-    // Changed from texts: string[] to rows: React.ReactNode[] to support complex content like skill cards
     rows?: React.ReactNode[];
     velocity?: number;
     className?: string;

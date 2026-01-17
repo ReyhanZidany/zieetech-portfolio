@@ -10,9 +10,10 @@ export default {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
+        comic: ['"Gloria Hallelujah"', 'cursive'],
       },
       maxWidth: {
-        'content':  '680px',
+        'content': '680px',
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -21,5 +22,5 @@ export default {
       },
     },
   },
-  plugins:  [],
+  plugins: [],
 }
