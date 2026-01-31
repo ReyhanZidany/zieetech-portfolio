@@ -39,22 +39,22 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
     if (containerRef.current && videoWrapperRef.current && textRef.current) {
       const tl = gsap.timeline({ onComplete })
 
-      // 1. Fade out text
-      tl.to(textRef.current, { opacity: 0, duration: 0.3 })
+      // 1. Zoom out / Close circle
+      tl.to(videoWrapperRef.current, {
+        clipPath: "circle(0% at 50% 50%)",
+        duration: 0.8,
+        ease: "power4.inOut"
+      })
 
-        // 2. Slide up container (Curtain effect)
+        // 2. Fade out text
+        .to(textRef.current, { opacity: 0, duration: 0.3 }, "<")
+
+        // 3. Fade out container background
         .to(containerRef.current, {
-          yPercent: -100,
-          duration: 0.8,
-          ease: "power4.inOut"
-        })
-
-        // 3. Parallax video movement (move down while container moves up)
-        .to(videoWrapperRef.current, {
-          y: 100,
           opacity: 0,
-          duration: 0.8
-        }, "<") // Run simultaneously with container slide
+          duration: 0.5
+        }, "-=0.2")
+
     } else {
       onComplete()
     }
@@ -99,22 +99,20 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
     >
       <motion.div
         ref={videoWrapperRef}
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", bounce: 0.5, delay: 0.2 }}
-        className="relative w-full flex justify-center px-4"
+        initial={{ clipPath: "circle(0% at 50% 50%)", opacity: 0 }}
+        animate={{ clipPath: "circle(100% at 50% 50%)", opacity: 1 }}
+        transition={{ duration: 3, ease: "easeOut" }}
+        className="relative w-full max-w-[300px] md:max-w-[400px] aspect-square rounded-full overflow-hidden bg-black"
       >
-        <div className="relative w-full max-w-[280px] md:max-w-[400px] aspect-[4/3] rounded-xl">
-          <video
-            src="/peanuts-ngoding-compressed.mp4"
-            autoPlay
-            muted
-            playsInline
-            onEnded={handleVideoEnded}
-            onLoadedData={() => setIsVideoLoaded(true)}
-            className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
-          />
-        </div>
+        <video
+          src="/peanuts-ngoding-compressed.mp4"
+          autoPlay
+          muted
+          playsInline
+          onEnded={handleVideoEnded}
+          onLoadedData={() => setIsVideoLoaded(true)}
+          className={`w-full h-full object-contain transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+        />
       </motion.div>
 
       <h2

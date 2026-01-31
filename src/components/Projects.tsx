@@ -5,15 +5,15 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { getSkillIcon } from '../utils/techIcons'
 
 const Projects = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold:  0.1 })
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
     <section id="projects" className="py-12 px-6" ref={ref}>
       <div className="max-w-content mx-auto">
         <motion.div
-          initial={{ opacity: 0, y:  20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration:  0.5 }}
+          transition={{ duration: 0.5 }}
         >
           {/* Section Label */}
           <p className="text-sm font-mono text-gray-500 dark:text-gray-400 mb-8">Projects</p>
@@ -26,12 +26,19 @@ const Projects = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group"
+                className="group relative overflow-hidden rounded-xl p-4 -mx-4 transition-all duration-300 hover:bg-gray-50/50 dark:hover:bg-gray-800/20"
               >
-                <div className="flex flex-col gap-3">
+                {/* Background Image Overlay */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none z-0"
+                  style={{ backgroundImage: `url(${project.thumbnail})` }}
+                />
+
+                {/* Content Container - Ensure this is above the background */}
+                <div className="flex flex-col gap-3 relative z-10">
                   {/* Title & Links */}
                   <div className="flex items-start justify-between gap-4">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
                       {project.title}
                     </h3>
                     <div className="flex items-center gap-3 flex-shrink-0">
@@ -69,7 +76,7 @@ const Projects = () => {
                   <div className="flex flex-wrap gap-2 items-center">
                     {project.tags.map((tech) => {
                       const { icon: Icon, color, isImage, imagePath } = getSkillIcon(tech)
-                      
+
                       return (
                         <div
                           key={tech}
@@ -79,9 +86,9 @@ const Projects = () => {
                           {/* Only show icon container if there's an icon */}
                           {(isImage || Icon) && (
                             <div className="w-3.5 h-3.5 flex items-center justify-center">
-                              {isImage && imagePath ?  (
-                                <img 
-                                  src={imagePath} 
+                              {isImage && imagePath ? (
+                                <img
+                                  src={imagePath}
                                   alt={tech}
                                   className="w-full h-full object-contain"
                                 />

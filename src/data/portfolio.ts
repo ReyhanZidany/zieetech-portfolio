@@ -87,7 +87,7 @@ export const projects = [
   {
     id: 7,
     title: 'Based - Onchain Reputation',
-    thumbnail: '',
+    thumbnail: 'based-id.png',
     description: 'Onchain Reputation platform for minting achievement proofs. Built for Base Indonesia Hackathon 2025.',
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Solidity', 'OnchainKit'],
     githubUrl: 'https://github.com/ReyhanZidany/based',
@@ -132,7 +132,7 @@ export const projects = [
   {
     id: 2,
     title: 'StockHub – Enterprise Resource Planning (ERP)',
-    thumbnail: '/stockhub-ls.jpeg',
+    thumbnail: '/stockhub_logo.png',
     description: 'Comprehensive ERP solution designed for efficient inventory management with decoupled architecture featuring React frontend and Rails API backend.',
     tags: ['React.js', 'Ruby on Rails', 'JavaScript', 'Docker', 'REST API'],
     githubUrl: 'https://github.com/ReyhanZidany/StockHub',
@@ -163,7 +163,7 @@ export const projects = [
   {
     id: 4,
     title: 'Mr. Beans – Coffee E-Commerce Platform',
-    thumbnail: '/mrbeans. png',
+    thumbnail: '/mrbeans.png',
     description: 'Modern e-commerce web application for browsing and ordering coffee products with dynamic API integration and responsive design.',
     tags: ['React.js', 'Firebase', 'Tailwind CSS', 'REST API'],
     githubUrl: 'https://github.com/ReyhanZidany/MrBeans',
