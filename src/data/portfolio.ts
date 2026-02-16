@@ -32,7 +32,7 @@ export const education = {
   degree: 'Bachelor of Engineering - Computer Engineering',
   location: 'Semarang, Indonesia',
   period: '2022 - Present',
-  gpa: '3.74/4.00',
+  gpa: '3.76/4.00',
 }
 
 export const experiences = [

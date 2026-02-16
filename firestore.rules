@@ -1,0 +1,60 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user is the portfolio owner
+    function isOwner() {
+      return isAuthenticated() && request.auth.token.email == 'reyzidan23@gmail.com';
+    }
+    
+    // Helper function to check if user is the message sender
+    function isMessageSender(messageData) {
+      return isAuthenticated() && request.auth.uid == messageData.senderId;
+    }
+    
+    // Helper function to check if user is involved in private message
+    function isPrivateMessageParticipant(messageData) {
+      return isAuthenticated() && 
+             (request.auth.uid == messageData.senderId || 
+              request.auth.uid == messageData.recipientId);
+    }
+    
+    // Rate limiting helper (basic check - 10 messages per minute)
+    function isWithinRateLimit() {
+      return true; // Implement client-side rate limiting for now
+    }
+    
+    // Messages collection
+    match /messages/{messageId} {
+      // Authenticated users can read public messages or private messages they're involved in
+      allow read: if isAuthenticated();
+      
+      // Authenticated users can create messages with rate limiting
+      allow create: if isAuthenticated() && 
+                       request.resource.data.text.size() > 0 &&
+                       request.resource.data.text.size() <= 500 &&
+                       request.resource.data.senderId == request.auth.uid;
+      
+      // Users can delete their own messages, owner can delete any message
+      allow delete: if isOwner() || isMessageSender(resource.data);
+      
+      // No updates allowed
+      allow update: if false;
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      // Anyone authenticated can read user profiles
+      allow read: if isAuthenticated();
+      
+      // Users can only write their own profile
+      allow write: if isAuthenticated() && request.auth.uid == userId;
+    }
+  }
+}

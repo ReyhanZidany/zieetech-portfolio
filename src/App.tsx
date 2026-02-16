@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import ReactGA from 'react-ga4'
-import SplashScreen from './components/SplashScreen'
+import AirplaneLoader from './components/AirplaneLoader'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -11,6 +11,10 @@ import Certifications from './components/Certifications'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import LightRays from './components/LightRays'
+import FloatingMenu from './components/FloatingMenu'
+import SpotifyCallback from './components/SpotifyCallback'
+import { AuthProvider } from './contexts/AuthContext'
+import { SpotifyProvider } from './contexts/SpotifyContext'
 
 function App() {
   const [showSplash, setShowSplash] = useState(true)
@@ -51,11 +55,21 @@ function App() {
     }
   }, [showSplash])
 
+  // Check if this is Spotify callback
+  if (window.location.hash.includes('access_token')) {
+    return (
+      <SpotifyProvider>
+        <SpotifyCallback />
+      </SpotifyProvider>
+    )
+  }
+
   return (
-    <>
-      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+    <AuthProvider>
+      <SpotifyProvider>
+      {showSplash && <AirplaneLoader onComplete={handleSplashComplete} />}
       
-      {! showSplash && (
+      {!showSplash && (
         <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors relative">
           <div className="fixed inset-0 z-0 pointer-events-none">
             <LightRays
@@ -86,9 +100,13 @@ function App() {
             <Contact />
           </main>
           <Footer />
+          
+          {/* Floating Menu (Chat + Music) */}
+          <FloatingMenu />
         </div>
       )}
-    </>
+      </SpotifyProvider>
+    </AuthProvider>
   )
 }
 
