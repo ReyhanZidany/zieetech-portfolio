@@ -3,20 +3,24 @@ import { parseCallback } from '../services/spotifyAuth'
 
 const SpotifyCallback = () => {
   useEffect(() => {
-    const { accessToken, error } = parseCallback()
+    const handleCallback = async () => {
+      const { accessToken, error } = await parseCallback()
 
-    if (error) {
-      console.error('Spotify auth error:', error)
-      window.location.href = '/'
-      return
+      if (error) {
+        console.error('Spotify auth error:', error)
+        window.location.href = '/'
+        return
+      }
+
+      if (accessToken) {
+        // Clear hash from URL
+        window.history.replaceState(null, '', window.location.pathname)
+        // Redirect back to home
+        window.location.href = '/'
+      }
     }
 
-    if (accessToken) {
-      // Clear hash from URL
-      window.history.replaceState(null, '', window.location.pathname)
-      // Redirect back to home
-      window.location.href = '/'
-    }
+    handleCallback()
   }, [])
 
   return (

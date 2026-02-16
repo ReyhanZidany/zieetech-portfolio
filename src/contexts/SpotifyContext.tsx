@@ -101,8 +101,9 @@ export const SpotifyProvider = ({ children }: SpotifyProviderProps) => {
     }
   }, [accessToken])
 
-  const login = () => {
-    window.location.href = getAuthUrl()
+  const login = async () => {
+    const authUrl = await getAuthUrl()
+    window.location.href = authUrl
   }
 
   const logout = () => {

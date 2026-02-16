@@ -56,7 +56,8 @@ function App() {
   }, [showSplash])
 
   // Check if this is Spotify callback
-  if (window.location.hash.includes('access_token')) {
+  const urlParams = new URLSearchParams(window.location.search)
+  if (urlParams.has('code') || urlParams.has('error')) {
     return (
       <SpotifyProvider>
         <SpotifyCallback />
