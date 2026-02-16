@@ -121,16 +121,34 @@ export const SpotifyProvider = ({ children }: SpotifyProviderProps) => {
     if (!accessToken || !deviceId) return
 
     const endpoint = `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`
-    const body = uri ? JSON.stringify({ uris: [uri] }) : undefined
+    
+    // Use context_uri for playlists/albums, uris for individual tracks
+    let body
+    if (uri) {
+      if (uri.includes('playlist') || uri.includes('album')) {
+        body = JSON.stringify({ context_uri: uri })
+      } else {
+        body = JSON.stringify({ uris: [uri] })
+      }
+    }
 
-    await fetch(endpoint, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${accessToken}`
-      },
-      body
-    })
+    try {
+      const response = await fetch(endpoint, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`
+        },
+        body
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        console.error('Spotify play error:', error)
+      }
+    } catch (error) {
+      console.error('Failed to play:', error)
+    }
   }
 
   const pause = async () => {
