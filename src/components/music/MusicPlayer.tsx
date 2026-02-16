@@ -71,26 +71,30 @@ const MusicPlayer = ({ isOpen, onClose }: MusicPlayerProps) => {
               <FaMusic className="text-green-500 dark:text-green-600 text-lg" />
               <h3 className="text-white dark:text-gray-900 font-bold text-lg">Now Playing</h3>
             </div>
-            <div className="flex items-center gap-2 relative z-20">
+            <div className="flex items-center gap-2 relative z-50">
               <button
                 onClick={(e) => {
                   e.stopPropagation()
+                  e.preventDefault()
                   setIsMinimized(true)
                 }}
-                className="text-white dark:text-gray-900 hover:bg-white/20 dark:hover:bg-gray-900/10 rounded-full p-2 transition-colors cursor-pointer"
+                className="text-white dark:text-gray-900 hover:bg-white/20 dark:hover:bg-gray-900/10 rounded-full p-3 transition-colors cursor-pointer relative z-50"
                 aria-label="Minimize music player"
+                style={{ touchAction: 'manipulation' }}
               >
-                <HiMinusSm className="text-xl pointer-events-none" />
+                <HiMinusSm className="text-2xl pointer-events-none" />
               </button>
               <button
                 onClick={(e) => {
                   e.stopPropagation()
+                  e.preventDefault()
                   onClose()
                 }}
-                className="text-white dark:text-gray-900 hover:bg-white/20 dark:hover:bg-gray-900/10 rounded-full p-2 transition-colors cursor-pointer"
+                className="text-white dark:text-gray-900 hover:bg-white/20 dark:hover:bg-gray-900/10 rounded-full p-3 transition-colors cursor-pointer relative z-50"
                 aria-label="Close music player"
+                style={{ touchAction: 'manipulation' }}
               >
-                <IoClose className="text-xl pointer-events-none" />
+                <IoClose className="text-2xl pointer-events-none" />
               </button>
             </div>
           </div>
